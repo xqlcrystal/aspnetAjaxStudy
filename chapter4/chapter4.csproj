@@ -58,16 +58,32 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="4_15getbaseType.aspx" />
     <Content Include="4_1JavaScriptFunction.aspx" />
+    <Content Include="4_2Javascript.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="4_15getbaseType.aspx.cs">
+      <DependentUpon>4_15getbaseType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="4_15getbaseType.aspx.designer.cs">
+      <DependentUpon>4_15getbaseType.aspx</DependentUpon>
+    </Compile>
     <Compile Include="4_1JavaScriptFunction.aspx.cs">
       <DependentUpon>4_1JavaScriptFunction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="4_1JavaScriptFunction.aspx.designer.cs">
       <DependentUpon>4_1JavaScriptFunction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="4_2Javascript.aspx.cs">
+      <DependentUpon>4_2Javascript.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="4_2Javascript.aspx.designer.cs">
+      <DependentUpon>4_2Javascript.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
