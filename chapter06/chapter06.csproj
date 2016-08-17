@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="6_34preventDefault.aspx" />
     <Content Include="css.aspx" />
     <Content Include="frame1.aspx" />
     <Content Include="frame2.aspx" />
@@ -69,6 +70,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="6_34preventDefault.aspx.cs">
+      <DependentUpon>6_34preventDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="6_34preventDefault.aspx.designer.cs">
+      <DependentUpon>6_34preventDefault.aspx</DependentUpon>
+    </Compile>
     <Compile Include="css.aspx.cs">
       <DependentUpon>css.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
