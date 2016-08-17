@@ -38,6 +38,8 @@
 
             alert(Department.manger.getBaseType());
 
+            var m = new Department.manger();
+            alert(m.getBaseType());
         </script>
     </div>
     </form>
