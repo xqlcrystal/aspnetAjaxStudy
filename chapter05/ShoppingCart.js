@@ -50,7 +50,7 @@ function Shopping$ShoppingCart$initialize() {
 }
 
 function Shopping$ShoppingCart$onShoppingCartInitialized(e) {
-    var handler = this.get_events().gethandler();
+    var handler = this.get_events().getHandler("shoppingCartInitialized");
     if (handler) {
         handler(this, e);
     }
@@ -61,22 +61,95 @@ function Shopping$ShoppingCart$get_shoppingCartItems() {
 }
 
 function Shopping$ShoppingCart$addShoppingCartItem(shoppingCartItem) {
-    var cartItems = this.get_shoppingCartItems();
-    var cartItemId = shoppingCartItem.get_id();
-    if (cartItems[cartItemId]) {
-        
+
+    var el = new Shopping.ShoppingCartItemAddingEventArgs(shoppingCartItem);
+    this.onShoppingCartItemAdding(el);
+
+    if (!el.get_cancel()) {
+        var exception = null;
+        var cartItems = this.get_shoppingCartItems();
+        var cartItemId = shoppingCartItem.get_id();
+        if (cartItems[cartItemId]) {
+            exception = Error.duplicateItem(
+                "Duplicate shopping cart item.",
+            {
+                name:shoppingCartItem.get_name()
+
+            }
+        );
+
+        }
+        else {
+            this._shoppingCartItems[cartItemId] = shoppingCartItem;
+        }
+
+        var e2 = new Shopping.ShoppingCartItemAddedEventArgs(shoppingCartItem, exception);
+        this.onShoppingCartItemAdded(e2);
+
+        if (!e2.get_exceptionHandled()) {
+            throw exception;
+        }
+            
     }
-    else {
-        this._shoppingCartItems[cartItemId] = shoppingCartItem;
+
+   
+}
+
+
+function Shopping$ShoppingCart$onShoppingCartItemAdding(e) {
+    var handler = this.get_events().getHandler("shoppingCartItemAdding");
+    if (handler) {
+        handler(this, e);
     }
+}
+
+
+function Shopping$ShoppingCart$onShoppingCartItemAdded(e) {
+    var handler = this.get_events().getHandler("shoppingCartItemAdded");
+    if (handler) {
+        handler(this, e);
+    }
+}
+
+function Shopping$ShoppingCart$add_shoppingCartInitialized(handler) {
+    this.get_events().addHandler("shoppingCartInitialized", handler)
+}
+
+function Shopping$ShoppingCart$add_shoppingCartItemAdding(handler) {
+    this.get_events().addHandler("shoppingCartItemAdding", handler)
+}
+
+
+function Shopping$ShoppingCart$add_shoppingCartItemAdded(handler) {
+    this.get_events().addHandler("shoppingCartItemAdded", handler)
+}
+
+function Shopping$ShoppingCart$remove_shoppingCartInitialized(handler) {
+    this.get_events().removeHandler("shoppingCartInitialized", handler)
+}
+
+function Shopping$ShoppingCart$remove_shoppingCartItemAdding(handler) {
+    this.get_events().removeHandler("shoppingCartItemAdding", handler)
+}
+
+function Shopping$ShoppingCart$remove_shoppingCartItemAdded(handler) {
+    this.get_events().removeHandler("shoppingCartItemAdded", handler)
 }
 
 Shopping.ShoppingCart.prototype = {
     get_events:Shopping$ShoppingCart$get_events,
-    initialize: Shopping$ShoppingCart$initialize,
-    onShoppingCartInitialized:Shopping$ShoppingCart$onShoppingCartInitialized,
+    initialize: Shopping$ShoppingCart$initialize,     
     get_shoppingCartItems: Shopping$ShoppingCart$get_shoppingCartItems,
-    addShoppingCartItem: Shopping$ShoppingCart$addShoppingCartItem
+    addShoppingCartItem: Shopping$ShoppingCart$addShoppingCartItem,
+    onShoppingCartInitialized: Shopping$ShoppingCart$onShoppingCartInitialized,
+    onShoppingCartItemAdding:Shopping$ShoppingCart$onShoppingCartItemAdding,
+    onShoppingCartItemAdded: Shopping$ShoppingCart$onShoppingCartItemAdded,
+    add_shoppingCartInitialized: Shopping$ShoppingCart$add_shoppingCartInitialized,
+    add_shoppingCartItemAdding: Shopping$ShoppingCart$add_shoppingCartItemAdding,
+    add_shoppingCartItemAdded: Shopping$ShoppingCart$add_shoppingCartItemAdded,
+    remove_shoppingCartInitialized: Shopping$ShoppingCart$remove_shoppingCartInitialized,
+    remove_shoppingCartItemAdding: Shopping$ShoppingCart$remove_shoppingCartItemAdding,
+    remove_shoppingCartItemAdded: Shopping$ShoppingCart$remove_shoppingCartItemAdded
 }
 
 Shopping.ShoppingCart.registerClass("Shopping.ShoppingCart");
