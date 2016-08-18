@@ -60,6 +60,7 @@
   <ItemGroup>
     <Content Include="6_34preventDefault.aspx" />
     <Content Include="css.aspx" />
+    <Content Include="Delegate.js" />
     <Content Include="frame1.aspx" />
     <Content Include="frame2.aspx" />
     <Content Include="Frameset.aspx" />
