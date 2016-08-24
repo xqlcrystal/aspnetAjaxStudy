@@ -66,7 +66,11 @@ function CustomComponents$CustomTable$databind() {
 }
 
 CustomComponents.CustomTable.prototype = {
-
+    get_dataSource: CustomComponents$CustomTable$get_dataSource,
+    set_dataSource: CustomComponents$CustomTable$set_dataSource,
+    set_dataFieldNames:CustomComponents$CustomTable$set_dataFieldNames,
+    get_dataFieldNames:CustomComponents$CustomTable$get_dataFieldNames,
+databind:CustomComponents$CustomTable$databind
 }
 
 CustomComponents.CustomTable.registerClass("CustomComponents.CustomTable", Sys.UI.Control);
