@@ -8,16 +8,16 @@ CustomComponets.GridView = function CustomComponets$GridView (associatedElement)
 
 function CustomComponets$GridView$onBubbleEvent(source, args) {
     var handled = false;
-    if (args instanceof Sys.Preview.UI.CommandEventArgs) {
+    if (args instanceof CustomComponets.GridViewCommandEventArgs) {
         switch (args.get_commandName()) {
 
             case "Select": {
-                alert(args.get_argument() + " is selected");
+                alert(args.get_argument() + "from row index "+args.get_row().get_rowIndex() +" is selected");
                 handled = true;
                 break;
             }
             case "Delete": {
-                alert(args.get_argument() + " is Deleted");
+                alert(args.get_argument() +" from row index "+args.get_row().get_rowIndex()+ " is Deleted");
                 handled = true;
                 break;
             }

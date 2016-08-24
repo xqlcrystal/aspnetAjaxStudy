@@ -63,11 +63,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GridView.js" />
+    <Content Include="GridViewCommandEventArgs.js" />
+    <Content Include="GridViewRow.js" />
+    <Content Include="GridViewRowTest.aspx" />
     <Content Include="GridViewTest.aspx" />
     <Content Include="lib\Microsoft.Web.Preview.dll" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GridViewRowTest.aspx.cs">
+      <DependentUpon>GridViewRowTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GridViewRowTest.aspx.designer.cs">
+      <DependentUpon>GridViewRowTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GridViewTest.aspx.cs">
       <DependentUpon>GridViewTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
