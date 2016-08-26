@@ -22,5 +22,17 @@ namespace chaptor14
         {
             return x + y;
         }
+
+        [WebMethod]
+        public double Devide(double x,double y)
+        {
+            if (y == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
+            return x / y;
+
+        }
     }
 }

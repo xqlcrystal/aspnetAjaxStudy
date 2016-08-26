@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,5 +14,20 @@ namespace chaptor14
         {
 
         }
+
+        [WebMethod]
+        public static double Devide(double x, double y)
+        {
+            if (y == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
+            return x / y;
+
+        }
     }
+
+
+   
 }

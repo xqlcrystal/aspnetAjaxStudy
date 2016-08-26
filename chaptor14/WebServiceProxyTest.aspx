@@ -13,6 +13,12 @@
 
         function onfail(result,usercontext,method) {
 
+            var sb = new Sys.StringBuilder();
+            sb.appendLine(result.get_message());
+            sb.appendLine(result.get_stackTrace());
+            sb.appendLine(result.get_exceptionType());
+            alert(sb.toString());
+
         }
         function add() {
             var servicePath = "http://localhost:61886/Math.asmx";
@@ -23,7 +29,33 @@
             var param = { x: xvalue, y: yvalue };
             var usercontext = $get("result");
 
-            var webserviceProxy = new Sys.Net.WebServiceProxy();
+            
+            Sys.Net.WebServiceProxy.invoke(servicePath, method, useget, param, onsuccess, onfail, usercontext, 5000);
+        }
+
+        function divide() {
+            var servicePath = "http://localhost:61886/Math.asmx";
+            var method = "Devide";
+            var useget = false;
+            var xvalue = $get("firstnumber").value;
+            var yvalue = $get("secondnumber").value;
+            var param = { x: xvalue, y: yvalue };
+            var usercontext = $get("result");
+
+
+            Sys.Net.WebServiceProxy.invoke(servicePath, method, useget, param, onsuccess, onfail, usercontext, 5000);
+        }
+
+        function pagemethod() {
+            var servicePath = "/WebServiceProxyTest.aspx";
+            var method = "Devide";
+            var useget = false;
+            var xvalue = $get("firstnumber").value;
+            var yvalue = $get("secondnumber").value;
+            var param = { x: xvalue, y: yvalue };
+            var usercontext = $get("result");
+
+
             Sys.Net.WebServiceProxy.invoke(servicePath, method, useget, param, onsuccess, onfail, usercontext, 5000);
         }
     </script>
@@ -39,7 +71,9 @@
     </div>
         <input type="text" name="name" value="" id="firstnumber"/>
         <input type="text" id="secondnumber" />
-        <input type="button" onclick="add();" />
+        <input type="button" value="加上" onclick="add();" />
+        <input type="button" value="除以" onclick="divide();" />
+        <input type="button" value="PageMethod" onclick="pagemethod();" />
         <span id="result" />
     </form>
 </body>
